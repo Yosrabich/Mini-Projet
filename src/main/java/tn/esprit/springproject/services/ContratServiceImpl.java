@@ -1,6 +1,7 @@
 package tn.esprit.springproject.services;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Contrat;
 import tn.esprit.springproject.entities.Etudiant;
@@ -12,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ContratServiceImpl implements ContratService {
@@ -54,7 +55,7 @@ public class ContratServiceImpl implements ContratService {
 
         Etudiant etudiant = etudiantRepository.findByNomAndPrenom(nom, prenom);
         if(etudiant==null){
-            log.print("not exist");
+            log.info("not exist");
         }
         else if(contratRepository.findByEtudiantIdEtudiantAndAndArchive(etudiant.getIdEtudiant(),false).size() < 5) {
             ce.setEtudiant(etudiant);

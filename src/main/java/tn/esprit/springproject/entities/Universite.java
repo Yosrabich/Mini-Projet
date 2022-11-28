@@ -19,6 +19,7 @@ public class Universite {
     @Setter(AccessLevel.NONE)
     private int idUniv;
     private String nomUniv;
+    private String adresse;
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Departement> departements;

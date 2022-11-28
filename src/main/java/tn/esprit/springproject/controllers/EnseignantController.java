@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.springproject.entities.DetailEquipe;
 import tn.esprit.springproject.entities.Enseignant;
 import tn.esprit.springproject.entities.Fonction;
 import tn.esprit.springproject.services.EnseignantService;
@@ -57,8 +56,8 @@ public class EnseignantController {
 
     @Operation(description = "getEnseignantByFonction_ChefDepartementAndDepartement_IdDepart")
     @PutMapping("/getChefDepart/{fonction}/{idDepart}")
-    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction,@PathVariable int idDepart) {
-        return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction,idDepart);
+    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction, @PathVariable int idDepart) {
+        return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction, idDepart);
 
 
     }

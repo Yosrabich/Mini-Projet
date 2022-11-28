@@ -3,6 +3,7 @@ package tn.esprit.springproject.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
+import tn.esprit.springproject.entities.TriunivDto;
 import tn.esprit.springproject.entities.Universite;
 import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.UniversiteRepository;
@@ -43,6 +44,26 @@ universiteRepository.deleteById(id);
         universite.getDepartements().add(departement);
         universiteRepository.save(universite);
 
+    }
+
+    @Override
+    public int nbrDepartementInUniv(Integer idUniv) {
+        return universiteRepository.nbrdepUniv(idUniv);
+    }
+
+    @Override
+    public int nbrEtudiantInUniv(Integer idUniv) {
+        return universiteRepository.nbretudUniv(idUniv);
+    }
+
+    @Override
+    public List<TriunivDto> triUnivParEtudiant() {
+        return universiteRepository.triuniv();
+    }
+
+    @Override
+    public List<Universite> UnivparAdresse(String adresse) {
+        return universiteRepository.findUniversiteByAdresse(adresse);
     }
 }
 
