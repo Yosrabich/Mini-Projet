@@ -13,5 +13,7 @@ public interface EnseignantService {
     Enseignant updateEnseignant(Enseignant e);
     Enseignant retrieveEnseignant(int id);
     void assignEnseignantToDepartement(int enseignantId, int departementId);
-    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart);
+    List<Enseignant> getEnseignantsByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart);
+    List<Enseignant>  getEnseignantWithMaxSalaireByDeptAndFonction(Fonction fonction,int idDepart);
+    Integer nombreEnseignantsByDepartement(int idDepart);
 }

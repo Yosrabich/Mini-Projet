@@ -62,6 +62,16 @@ public class DepartementServiceImpl implements DepartementService{
         return departementRepository.getAllOrderByNomDepartAsc();
     }
 
+    @Override
+    public double salaireMoyenParDepartement(int idDepart) {
+        return departementRepository.salaireMoyenParDepartement(idDepart);
+    }
+
+    @Override
+    public List<Departement> getDepartementsByNomDepartContains(String nom) {
+        return departementRepository.getDepartementsByNomDepartContains(nom);
+    }
+
 
 }
 

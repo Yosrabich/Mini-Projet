@@ -15,4 +15,6 @@ public interface DepartementService {
      Set<Departement> retrieveDepartementsByUniversite(int idUniversite);
     Departement searchDepartementByNomDepart(String nomDepart);
     List<Departement> getAllOrderByNomDepartAsc();
+    double salaireMoyenParDepartement(int idDepart);
+    List<Departement> getDepartementsByNomDepartContains(String nom);
 }

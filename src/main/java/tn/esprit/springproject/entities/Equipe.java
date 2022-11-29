@@ -3,6 +3,7 @@ package tn.esprit.springproject.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import java.util.Set;
 @ToString
 @Builder
 @Entity
-public class Equipe {
+public class Equipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)

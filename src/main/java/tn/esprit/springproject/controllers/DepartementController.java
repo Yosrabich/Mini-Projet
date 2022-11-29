@@ -60,4 +60,16 @@ public class DepartementController {
     List<Departement> getAllOrderByNomDepartAsc(){
         return departementService.getAllOrderByNomDepartAsc();
     }
+
+    @Operation(description ="salaireMoyenParDepartement")
+    @GetMapping("/salaireMoyenParDepartement/{idDepart}")
+    double salaireMoyenParDepartement(@PathVariable int idDepart){
+        return departementService.salaireMoyenParDepartement(idDepart);
+    }
+    @Operation(description ="getDepartementsByNomDepartContains")
+    @GetMapping("/getDepartementsByNomDepartContains/{nom}")
+    List<Departement> getDepartementsByNomDepartContains(@PathVariable String nom){
+       return departementService.getDepartementsByNomDepartContains(nom);
+    }
 }
+

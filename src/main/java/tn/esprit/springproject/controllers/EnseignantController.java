@@ -10,7 +10,7 @@ import tn.esprit.springproject.entities.Fonction;
 import tn.esprit.springproject.services.EnseignantService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @Tag(name = "EnseignantController")
 @RestController
 @AllArgsConstructor
@@ -56,10 +56,22 @@ public class EnseignantController {
     }
 
     @Operation(description = "getEnseignantByFonction_ChefDepartementAndDepartement_IdDepart")
-    @PutMapping("/getChefDepart/{fonction}/{idDepart}")
-    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction,@PathVariable int idDepart) {
-        return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction,idDepart);
+    @GetMapping("/getEnseignant/{fonction}/{idDepart}")
+    List<Enseignant> getEnseignantsByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction,@PathVariable int idDepart) {
+        return enseignantService.getEnseignantsByFonctionAndDepartement_IdDepart(fonction,idDepart);
 
 
     }
+    @Operation(description = "getEnseignantWithMaxSalaireByDeptAndFonction")
+    @GetMapping ("/getEnseignantWithMaxSalaireByDeptAndFonction/{fonction}/{idDepart}")
+    List<Enseignant>  getEnseignantWithMaxSalaireByDeptAndFonction(@PathVariable Fonction fonction,@PathVariable int idDepart){
+        return enseignantService.getEnseignantWithMaxSalaireByDeptAndFonction(fonction,idDepart);
+    }
+
+    @Operation(description = "nombreEnseignantsByDepartement")
+    @GetMapping ("/nombreEnseignantsByDepartement/{idDepart}")
+    Integer nombreEnseignantsByDepartement(@PathVariable int idDepart){
+        return enseignantService.nombreEnseignantsByDepartement(idDepart);
+    }
+
 }

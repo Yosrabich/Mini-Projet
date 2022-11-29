@@ -9,6 +9,7 @@ import tn.esprit.springproject.entities.Fonction;
 import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.EnseignantRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -40,7 +41,7 @@ public class EnseignantServiceImpl implements EnseignantService{
     public Enseignant retrieveEnseignant(int id) {
         return enseignantRepository.findById(id).orElse(null);
     }
-
+//5edmet Yosra
     public void assignEnseignantToDepartement(int enseignantId, int departementId) {
        Enseignant enseignant=retrieveEnseignant(enseignantId);
         Departement departement=departementRepository.findById(departementId).orElse(null);
@@ -49,7 +50,40 @@ public class EnseignantServiceImpl implements EnseignantService{
     }
 
     @Override
-    public Enseignant getEnseignantByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart) {
-        return enseignantRepository.getEnseignantByFonctionAndDepartement_IdDepart(fonction, idDepart);
+    public List<Enseignant> getEnseignantsByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart) {
+        return enseignantRepository.getEnseignantsByFonctionAndDepartement_IdDepart(fonction, idDepart);
     }
+
+    @Override
+    public  List<Enseignant>  getEnseignantWithMaxSalaireByDeptAndFonction(Fonction fonction, int idDepart) throws IndexOutOfBoundsException {
+        List<Enseignant> lst = enseignantRepository.getEnseignantsByFonctionAndDepartement_IdDepart(fonction, idDepart);
+        List<Enseignant> list = new ArrayList<>();
+        Enseignant max_sal = lst.get(0);
+        if (lst.size() == 0)
+            return list;
+
+        else {
+            for (int i = 0; i < lst.size(); i++) {
+                if (max_sal.getSalaire() < lst.get(i).getSalaire()) {
+
+                    max_sal = lst.get(i);
+                }
+
+            }
+
+            for (int i = 0; i < lst.size(); i++) {
+                if (max_sal.getSalaire() == lst.get(i).getSalaire())
+
+                    list.add(lst.get(i));
+            }
+            return list;
+        }
+    }
+
+
+    @Override
+    public Integer nombreEnseignantsByDepartement(int idDepart) {
+        return enseignantRepository.nombreEnseignantsByDepartement(idDepart);
+    }
+
 }

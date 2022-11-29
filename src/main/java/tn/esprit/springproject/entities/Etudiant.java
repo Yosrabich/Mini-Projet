@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 @Getter
 @Setter
@@ -13,7 +14,7 @@ import java.util.Set;
 @ToString
 @Builder
 @Entity
-public class Etudiant {
+public class Etudiant implements Serializable {
 
 
     @Id
