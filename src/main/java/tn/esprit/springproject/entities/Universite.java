@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,7 +20,9 @@ public class Universite {
     @Setter(AccessLevel.NONE)
     private int idUniv;
     private String nomUniv;
+    private String adresse;
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Departement> departements;
+
 }
