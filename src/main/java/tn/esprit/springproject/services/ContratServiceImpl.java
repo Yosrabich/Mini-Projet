@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Contrat;
 import tn.esprit.springproject.entities.Etudiant;
-import tn.esprit.springproject.entities.Universite;
 import tn.esprit.springproject.repositories.ContratRepository;
 import tn.esprit.springproject.repositories.EtudiantRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,15 +46,13 @@ public class ContratServiceImpl implements ContratService {
     }
 
 
-
     @Override
     public Contrat affectContratToEtudiant(Contrat ce, String nom, String prenom) {
 
         Etudiant etudiant = etudiantRepository.findByNomAndPrenom(nom, prenom);
-        if(etudiant==null){
+        if (etudiant == null) {
             log.print("not exist");
-        }
-        else if(contratRepository.findByEtudiantIdEtudiantAndAndArchive(etudiant.getIdEtudiant(),false).size() < 5) {
+        } else if (contratRepository.findByEtudiantIdEtudiantAndAndArchive(etudiant.getIdEtudiant(), false).size() < 5) {
             ce.setEtudiant(etudiant);
 
             return contratRepository.save(ce);
@@ -67,17 +63,17 @@ public class ContratServiceImpl implements ContratService {
     @Override
     public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
 
-        float chiffre=0;
-        List<Contrat> conts = contratRepository.findByDateFinContratBetweenAndArchive(startDate,endDate,false);
-        for(Contrat c:conts){
-            chiffre+=c.getMontantContrat();
+        float chiffre = 0;
+        List<Contrat> conts = contratRepository.findByDateFinContratBetweenAndArchive(startDate, endDate, false);
+        for (Contrat c : conts) {
+            chiffre += c.getMontantContrat();
         }
         return chiffre;
     }
 
     @Override
     public Integer nbContratsValides(Date startDate, Date endDate) {
-        List<Contrat> conts = contratRepository.findByDateFinContratBetweenAndArchive(startDate,endDate,false);
+        List<Contrat> conts = contratRepository.findByDateFinContratBetweenAndArchive(startDate, endDate, false);
         return conts.size();
     }
 }

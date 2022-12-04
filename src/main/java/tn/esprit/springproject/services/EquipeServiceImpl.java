@@ -6,10 +6,12 @@ import tn.esprit.springproject.entities.Equipe;
 import tn.esprit.springproject.repositories.EquipeRepository;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class EquipeServiceImpl implements EquipeService{
+public class EquipeServiceImpl implements EquipeService {
     EquipeRepository equipeRepository;
+
     @Override
     public List<Equipe> retrieveAllEquipes() {
         return equipeRepository.findAll();
@@ -22,7 +24,7 @@ public class EquipeServiceImpl implements EquipeService{
 
     @Override
     public void deleteEquipe(int id) {
-equipeRepository.deleteById(id);
+        equipeRepository.deleteById(id);
     }
 
     @Override

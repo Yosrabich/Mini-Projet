@@ -6,10 +6,12 @@ import tn.esprit.springproject.entities.Module;
 import tn.esprit.springproject.repositories.ModuleRepository;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class ModuleServiceEmpl implements ModuleService{
+public class ModuleServiceEmpl implements ModuleService {
     ModuleRepository moduleRepository;
+
     @Override
     public List<Module> retrieveAllModules() {
         return moduleRepository.findAll();
@@ -22,7 +24,7 @@ public class ModuleServiceEmpl implements ModuleService{
 
     @Override
     public void deleteModule(int id) {
-moduleRepository.deleteById(id);
+        moduleRepository.deleteById(id);
     }
 
     @Override

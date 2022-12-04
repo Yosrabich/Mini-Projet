@@ -9,16 +9,26 @@ import java.util.Set;
 
 public interface DepartementService {
     List<Departement> retrieveAllDepartements();
+
     Departement addDepartement(Departement d);
+
     void deleteDepartement(int id);
+
     Departement updateDepartement(Departement d);
+
     Departement retrieveDepartement(int id);
+
     //**************** YOSRA**************************
-     Set<Departement> retrieveDepartementsByUniversite(int idUniversite);
+    Set<Departement> retrieveDepartementsByUniversite(int idUniversite);
+
     Departement searchDepartementByNomDepart(String nomDepart);
+
     List<Departement> getAllOrderByNomDepartAsc();
+
     double salaireMoyenParDepartement(int idDepart);
+
     List<Departement> getDepartementsByNomDepartContains(String nom);
-    List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates( Date startDate, Date endDate);
+
+    List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates(Date startDate, Date endDate);
     //**************************************************************
 }

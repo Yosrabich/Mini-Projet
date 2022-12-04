@@ -3,7 +3,6 @@ package tn.esprit.springproject.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
-
 import tn.esprit.springproject.entities.MaxRecruDepart;
 import tn.esprit.springproject.entities.Universite;
 import tn.esprit.springproject.repositories.DepartementRepository;
@@ -15,9 +14,10 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
-public class DepartementServiceImpl implements DepartementService{
+public class DepartementServiceImpl implements DepartementService {
     DepartementRepository departementRepository;
     UniversiteRepository universiteRepository;
+
     @Override
     public List<Departement> retrieveAllDepartements() {
         return departementRepository.findAll();
@@ -45,11 +45,10 @@ public class DepartementServiceImpl implements DepartementService{
     }
 
 
-
     @Override
     public Set<Departement> retrieveDepartementsByUniversite(int idUniversite) {
-        Universite universite=universiteRepository.findById(idUniversite).orElse(null);
-       return universite.getDepartements();
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        return universite.getDepartements();
 
 
     }
@@ -75,7 +74,7 @@ public class DepartementServiceImpl implements DepartementService{
     }
 
     @Override
-    public  List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates(Date startDate, Date endDate) {
+    public List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates(Date startDate, Date endDate) {
         return departementRepository.nbRecrutementBydepartBetweenDeuxDates(startDate, endDate);
     }
 

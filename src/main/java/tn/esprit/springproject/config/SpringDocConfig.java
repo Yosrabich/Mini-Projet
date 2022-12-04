@@ -14,6 +14,7 @@ public class SpringDocConfig {
         return new OpenAPI()
                 .info(infoAPI());
     }
+
     public Info infoAPI() {
         return new Info().title("SpringDoc-Demo")
                 .description("TP étude de cas")
@@ -22,18 +23,21 @@ public class SpringDocConfig {
 
     public Contact contactAPI() {
         Contact contact = new Contact().name("Equipe ASI II")
-                        .email("yosra.elbich@esprit.tn")
+                .email("yosra.elbich@esprit.tn")
                 .url("https://www.linkedin.com/in/yosraElbich/");
 
-        return contact;}
-        @Bean
-        public GroupedOpenApi contratPublicApi() {
-            return GroupedOpenApi.builder()
-                    .group("Contrat Controllers")
-                                    .pathsToMatch("/Contrat/**")
-                                    .pathsToExclude("**")
-                                    .build();
-}
+        return contact;
+    }
+
+    @Bean
+    public GroupedOpenApi contratPublicApi() {
+        return GroupedOpenApi.builder()
+                .group("Contrat Controllers")
+                .pathsToMatch("/Contrat/**")
+                .pathsToExclude("**")
+                .build();
+    }
+
     @Bean
     public GroupedOpenApi detailEquipePublicApi() {
         return GroupedOpenApi.builder()
@@ -78,6 +82,7 @@ public class SpringDocConfig {
                 .pathsToExclude("**")
                 .build();
     }
+
     @Bean
     public GroupedOpenApi enseignantPublicApi() {
         return GroupedOpenApi.builder()
@@ -86,6 +91,7 @@ public class SpringDocConfig {
                 .pathsToExclude("**")
                 .build();
     }
+
     @Bean
     public GroupedOpenApi modulePublicApi() {
         return GroupedOpenApi.builder()

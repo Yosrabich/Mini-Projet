@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
 import tn.esprit.springproject.entities.Enseignant;
-
 import tn.esprit.springproject.entities.Fonction;
 import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.EnseignantRepository;
@@ -12,11 +11,13 @@ import tn.esprit.springproject.repositories.EnseignantRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class EnseignantServiceImpl implements EnseignantService{
+public class EnseignantServiceImpl implements EnseignantService {
     DepartementRepository departementRepository;
     EnseignantRepository enseignantRepository;
+
     @Override
     public List<Enseignant> retrieveAllEnseignants() {
         return enseignantRepository.findAll();
@@ -44,19 +45,19 @@ public class EnseignantServiceImpl implements EnseignantService{
     }
 
     public void assignEnseignantToDepartement(int enseignantId, int departementId) {
-       Enseignant enseignant=retrieveEnseignant(enseignantId);
-        Departement departement=departementRepository.findById(departementId).orElse(null);
+        Enseignant enseignant = retrieveEnseignant(enseignantId);
+        Departement departement = departementRepository.findById(departementId).orElse(null);
         enseignant.setDepartement(departement);
         enseignantRepository.save(enseignant);
     }
 
     @Override
-    public List<Enseignant> getEnseignantsByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart) {
+    public List<Enseignant> getEnseignantsByFonctionAndDepartement_IdDepart(Fonction fonction, int idDepart) {
         return enseignantRepository.getEnseignantsByFonctionAndDepartement_IdDepart(fonction, idDepart);
     }
 
     @Override
-    public  List<Enseignant>  getEnseignantWithMaxSalaireByDeptAndFonction(Fonction fonction, int idDepart) throws IndexOutOfBoundsException {
+    public List<Enseignant> getEnseignantWithMaxSalaireByDeptAndFonction(Fonction fonction, int idDepart) throws IndexOutOfBoundsException {
         List<Enseignant> lst = enseignantRepository.getEnseignantsByFonctionAndDepartement_IdDepart(fonction, idDepart);
         List<Enseignant> list = new ArrayList<>();
         Enseignant max_sal = lst.get(0);
@@ -86,6 +87,7 @@ public class EnseignantServiceImpl implements EnseignantService{
     public Integer nombreEnseignantsByDepartement(int idDepart) {
         return enseignantRepository.nombreEnseignantsByDepartement(idDepart);
     }
+
     @Override
     public List<Enseignant> findEnseignantsByDateRecrutementBetweenAndDepartement_IdDepart(Date startDate, Date endDate, int idDepart) {
         return enseignantRepository.findEnseignantsByDateRecrutementBetweenAndDepartement_IdDepart(startDate, endDate, idDepart);

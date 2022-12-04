@@ -25,11 +25,11 @@ public class Enseignant implements Serializable {
     @Enumerated(EnumType.STRING)
     private Fonction fonction;
     private double salaire;
-    @Temporal (TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date dateRecrutement;
-    @ManyToMany(mappedBy="enseignants")
+    @ManyToMany(mappedBy = "enseignants")
     @JsonIgnore
-     private Set<Module> modules;
+    private Set<Module> modules;
     @ManyToOne
     @JsonIgnore
     private Departement departement;
