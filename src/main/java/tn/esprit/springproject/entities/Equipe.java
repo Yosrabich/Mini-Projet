@@ -1,14 +1,16 @@
 package tn.esprit.springproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 public class Equipe {
@@ -17,10 +19,26 @@ public class Equipe {
     @Setter(AccessLevel.NONE)
     private int idEquipe;
     private String nomEquipe;
-@Enumerated(EnumType.STRING)
- private Niveau niveau;
-@OneToOne(cascade = CascadeType.ALL)
+    @Enumerated(EnumType.STRING)
+    private Niveau niveau;
+    @OneToOne(cascade = CascadeType.ALL)
     private DetailEquipe detailEquipe;
-@ManyToMany
+    @ManyToMany
     private Set<Etudiant> etudiants;
+    @ManyToOne
+    @JsonIgnore
+    private Encadrant encadrant;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipe equipe = (Equipe) o;
+        return idEquipe == equipe.idEquipe;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEquipe);
+    }
 }

@@ -7,8 +7,14 @@ import java.util.List;
 
 public interface EquipeService {
     List<Equipe> retrieveAllEquipes();
+
     Equipe addEquipe(Equipe eq);
+
     void deleteEquipe(int id);
+
     Equipe updateEquipe(Equipe eq);
+
     Equipe retrieveEquipe(int id);
+
+    Equipe affectEquipeToEncadrant(int idEquipe, int idEncadrant);
 }

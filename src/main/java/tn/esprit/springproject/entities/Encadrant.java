@@ -4,21 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @Entity
-public class DetailEquipe {
+public class Encadrant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-    private int idDetailEquipe;
-    private int salle;
-    private String thematique;
-    @OneToOne(mappedBy = "detailEquipe")
-    @JsonIgnore //ignorer l'objet equipe f detail
-    private Equipe equipe;
+    private int idEncadrant;
+    private String nomEncadrant;
+    private String prenomEncadrant;
+    private Grade grade;
+    @OneToMany(mappedBy = "encadrant")
+    @JsonIgnore
+    private Set<Equipe> equipes;
 }
