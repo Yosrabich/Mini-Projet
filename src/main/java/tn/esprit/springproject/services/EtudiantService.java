@@ -2,6 +2,7 @@ package tn.esprit.springproject.services;
 
 
 import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.Option;
 
 import java.util.List;
 
@@ -27,4 +28,10 @@ public interface EtudiantService {
     List<Etudiant> getEtudiantsByDepartement(int idDepart);
 
     Integer nombreEtudiantsByDepartement(int idDepart);
+
+    Integer nombreEtudiantsByOption(Option option);
+
+
+
+    List<Etudiant> EtudiantsByOption(Option option);
 }

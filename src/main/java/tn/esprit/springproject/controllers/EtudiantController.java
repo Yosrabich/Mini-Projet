@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.Option;
 import tn.esprit.springproject.repositories.EtudiantRepository;
 
 import tn.esprit.springproject.services.EtudiantService;
@@ -72,4 +73,17 @@ List<Etudiant>getEtudiantsByDepartement(@PathVariable int idDepart){
     Integer nombreEtudiantsByDepartement(@PathVariable int idDepart){
         return etudiantService.nombreEtudiantsByDepartement(idDepart);
     }
+    @Operation(description =" nombreEtudiantsByOption")
+    @GetMapping("/nombreEtudiantsByOption/{option}")
+    Integer nombreEtudiantsByOption(@PathVariable Option option){
+        return etudiantService.nombreEtudiantsByOption(option);
+    }
+
+    @Operation(description =" EtudiantsByOption")
+    @GetMapping("/EtudiantsByOption/{option}")
+    List<Etudiant> EtudiantsByOption(@PathVariable Option option){
+        return etudiantService.EtudiantsByOption(option);
+    }
+
+
 }

@@ -2,10 +2,7 @@ package tn.esprit.springproject.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.springproject.entities.Contrat;
-import tn.esprit.springproject.entities.Departement;
-import tn.esprit.springproject.entities.Equipe;
-import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.*;
 import tn.esprit.springproject.repositories.DepartementRepository;
 
 import tn.esprit.springproject.repositories.EtudiantRepository;
@@ -77,6 +74,15 @@ Etudiant etudiant=retrieveEtudiant(etudiantId);
         return  etudiantRepository.nombreEtudiantsByDepartement(idDepart);
     }
 
+    @Override
+    public Integer nombreEtudiantsByOption(Option option) {
+        return  etudiantRepository.nombreEtudiantsByOption(option);
+    }
+
+    @Override
+    public List<Etudiant> EtudiantsByOption(Option option) {
+        return  etudiantRepository.EtudiantsByOption(option);
+    }
 
 
 }
