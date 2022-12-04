@@ -9,12 +9,12 @@ import java.util.List;
 
 
 public interface EtudiantRepository extends JpaRepository<Etudiant,Integer> {
-
+    //**************** YOSRA**************************
     Etudiant findByNomAndPrenom(String nom,String prenom);
     @Query("select e from Etudiant e where e.departement.idDepart=?1")
     List<Etudiant>getEtudiantsByDepartement(int idDepart);
-//    List<Etudiant> findEtudiantsByDepartement(long idDepart);
+
     @Query(value = "select count (e.idEtudiant) from Etudiant e group by e.departement.idDepart having e.departement.idDepart=?1")
     Integer nombreEtudiantsByDepartement(int idDepart);
-
+//**************************************************************************
 }

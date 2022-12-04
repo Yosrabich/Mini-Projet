@@ -4,10 +4,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.springproject.entities.Departement;
+
 import tn.esprit.springproject.entities.DetailEquipe;
 import tn.esprit.springproject.services.DetailEquipeService;
-import tn.esprit.springproject.services.DetailEquipeServiceImpl;
+
 
 import java.util.List;
 @Tag(name = "DetailEquipeController")

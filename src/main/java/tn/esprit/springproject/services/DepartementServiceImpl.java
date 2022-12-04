@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
 
+import tn.esprit.springproject.entities.MaxRecruDepart;
 import tn.esprit.springproject.entities.Universite;
 import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.UniversiteRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -70,6 +72,11 @@ public class DepartementServiceImpl implements DepartementService{
     @Override
     public List<Departement> getDepartementsByNomDepartContains(String nom) {
         return departementRepository.getDepartementsByNomDepartContains(nom);
+    }
+
+    @Override
+    public  List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates(Date startDate, Date endDate) {
+        return departementRepository.nbRecrutementBydepartBetweenDeuxDates(startDate, endDate);
     }
 
 

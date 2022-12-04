@@ -5,9 +5,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.springproject.entities.Equipe;
-import tn.esprit.springproject.entities.Etudiant;
+
 import tn.esprit.springproject.services.EquipeService;
-import tn.esprit.springproject.services.EtudiantService;
+
 
 import java.util.List;
 @Tag(name = "EquipeController")

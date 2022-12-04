@@ -17,7 +17,8 @@ public interface EtudiantService {
             idEquipe);
 
     Etudiant findByNomAndPrenom(String nom,String prenom);
-
-List<Etudiant>getEtudiantsByDepartement(int idDepart);
+    //**************** YOSRA**************************
+    List<Etudiant>getEtudiantsByDepartement(int idDepart);
     Integer nombreEtudiantsByDepartement(int idDepart);
+    //***************************************************
 }

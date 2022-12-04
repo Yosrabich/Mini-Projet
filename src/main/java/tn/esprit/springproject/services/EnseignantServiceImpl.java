@@ -4,12 +4,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
 import tn.esprit.springproject.entities.Enseignant;
-import tn.esprit.springproject.entities.Etudiant;
+
 import tn.esprit.springproject.entities.Fonction;
 import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.EnseignantRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -41,7 +42,7 @@ public class EnseignantServiceImpl implements EnseignantService{
     public Enseignant retrieveEnseignant(int id) {
         return enseignantRepository.findById(id).orElse(null);
     }
-//5edmet Yosra
+
     public void assignEnseignantToDepartement(int enseignantId, int departementId) {
        Enseignant enseignant=retrieveEnseignant(enseignantId);
         Departement departement=departementRepository.findById(departementId).orElse(null);
@@ -84,6 +85,10 @@ public class EnseignantServiceImpl implements EnseignantService{
     @Override
     public Integer nombreEnseignantsByDepartement(int idDepart) {
         return enseignantRepository.nombreEnseignantsByDepartement(idDepart);
+    }
+    @Override
+    public List<Enseignant> findEnseignantsByDateRecrutementBetweenAndDepartement_IdDepart(Date startDate, Date endDate, int idDepart) {
+        return enseignantRepository.findEnseignantsByDateRecrutementBetweenAndDepartement_IdDepart(startDate, endDate, idDepart);
     }
 
 }
