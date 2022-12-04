@@ -26,7 +26,7 @@ public interface ContratService {
 
     float getChiffreAffaireParEtudiant(int idEtudiant);
 
-    void AsseignContratToEtudiant(int idContrat, int idEtudiant);
+    void asseignContratToEtudiant(int idContrat, int idEtudiant);
 
     List<Contrat> findByDateFinContratBetween(Date startdate, Date enddate);
 
@@ -43,4 +43,10 @@ public interface ContratService {
     List<Contrat> findByEquipe(int idEquipe);
 
     List<Contrat> findByNiveauEquipe(Niveau niveau);
+
+    List<Contrat> findByDepartement(int idDepartement);
+
+    float getChiffreAffaireParEquipe(int idEquipe);
+
+    Contrat archiverContrat(int idContrat);
 }

@@ -1,6 +1,7 @@
 package tn.esprit.springproject.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import tn.esprit.springproject.entities.Contrat;
 import tn.esprit.springproject.entities.Equipe;
 import tn.esprit.springproject.entities.Option;
@@ -34,5 +35,7 @@ public interface ContratRepository extends JpaRepository<Contrat, Integer> {
     List<Contrat> findByMontantContratLessThanEqual(Double montant);
 
     List<Contrat> findByEtudiant_Op(Option option);
+
+    List<Contrat> findByEtudiantNotNull();
 }
 

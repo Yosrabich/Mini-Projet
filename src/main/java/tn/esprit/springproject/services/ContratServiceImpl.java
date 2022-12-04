@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.*;
 import tn.esprit.springproject.repositories.ContratRepository;
+import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.EquipeRepository;
 import tn.esprit.springproject.repositories.EtudiantRepository;
 
@@ -14,6 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
@@ -24,6 +26,7 @@ public class ContratServiceImpl implements ContratService {
     ContratRepository contratRepository;
     EtudiantRepository etudiantRepository;
     EquipeRepository equipeRepository;
+    DepartementRepository departementRepository;
 
     @Override
     public List<Contrat> retrieveAllContrats() {
@@ -102,7 +105,7 @@ public class ContratServiceImpl implements ContratService {
     }
 
     @Override
-    public void AsseignContratToEtudiant(int idContrat, int idEtudiant) {
+    public void asseignContratToEtudiant(int idContrat, int idEtudiant) {
         Contrat contrat = contratRepository.findById(idContrat).orElse(null);
         Etudiant etudiant = etudiantRepository.findById(idEtudiant).orElse(null);
         contrat.setEtudiant(etudiant);
@@ -142,14 +145,45 @@ public class ContratServiceImpl implements ContratService {
     @Override
     public List<Contrat> findByEquipe(int idEquipe) {
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
-        List<Contrat> contrats = contratRepository.findAll();
+        List<Contrat> contrats = contratRepository.findByEtudiantNotNull();
+//        contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().contains(equipe)).forEach(contrat -> System.out.println(contrat.getIdContrat()));
+//        return contrats.stream().filter(contrat -> contrat.getEtudiant() != null).filter(contrat -> contrat.getEtudiant().getEquipes().contains(equipe)).collect(Collectors.toList());
         return contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().contains(equipe)).collect(Collectors.toList());
     }
 
     @Override
     public List<Contrat> findByNiveauEquipe(Niveau niveau) {
-        List<Contrat> contrats = contratRepository.findAll();
+//        List<Contrat> contrats = contratRepository.findAll();
+        List<Contrat> contrats = contratRepository.findByEtudiantNotNull();
+//        contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().stream().anyMatch(equipe -> equipe.getNiveau().equals(niveau))).forEach(contrat -> System.out.println(contrat.getEtudiant().getNom()));
         return contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().stream().anyMatch(equipe -> equipe.getNiveau().equals(niveau))).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Contrat> findByDepartement(int idDepartement) {
+        Departement departement = departementRepository.findById(idDepartement).orElse(null);
+        return contratRepository.findByEtudiantNotNull().stream().filter(contrat -> contrat.getEtudiant().getDepartement() != null).filter(contrat -> contrat.getEtudiant().getDepartement().equals(departement)).collect(Collectors.toList());
+    }
+
+    @Override
+    public float getChiffreAffaireParEquipe(int idEquipe) {
+        float ca = 0;
+        long nbrMois = 0;
+        Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
+        List<Contrat> contrats = contratRepository.findByEtudiantNotNull();
+        List<Contrat> contratsParEquipe = contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().contains(equipe)).collect(Collectors.toList());
+        for (Contrat c : contratsParEquipe) {
+            nbrMois = ChronoUnit.MONTHS.between(convertToLocalDateViaInstant(c.getDateDebutContrat()), convertToLocalDateViaInstant(c.getDateFinContrat()));
+            ca += c.getMontantContrat() * nbrMois;
+        }
+        return ca;
+    }
+
+    @Override
+    public Contrat archiverContrat(int idContrat) {
+        Contrat c = contratRepository.findById(idContrat).orElse(null);
+        c.setArchive(true);
+        return contratRepository.save(c);
     }
 
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {

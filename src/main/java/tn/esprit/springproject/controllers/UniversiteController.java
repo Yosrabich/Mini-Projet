@@ -10,6 +10,7 @@ import tn.esprit.springproject.entities.Universite;
 import tn.esprit.springproject.services.UniversiteService;
 
 import java.util.List;
+@CrossOrigin
 @Tag(name = "UniversiteController")
 @AllArgsConstructor
 @RestController

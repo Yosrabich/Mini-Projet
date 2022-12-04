@@ -10,7 +10,6 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Entity
 public class Contrat {
@@ -29,4 +28,16 @@ public class Contrat {
     @ManyToOne
     @JsonIgnore
     private Etudiant etudiant;
+
+    @Override
+    public String toString() {
+        return "Contrat{" +
+                "idContrat=" + idContrat +
+                ", dateDebutContrat=" + dateDebutContrat +
+                ", dateFinContrat=" + dateFinContrat +
+                ", specialite=" + specialite +
+                ", archive=" + archive +
+                ", montantContrat=" + montantContrat +
+                '}';
+    }
 }

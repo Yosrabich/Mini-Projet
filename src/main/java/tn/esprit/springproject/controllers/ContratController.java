@@ -11,6 +11,7 @@ import tn.esprit.springproject.services.ContratService;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @Tag(name = "ContratController")
 @AllArgsConstructor
 @RestController
@@ -28,7 +29,6 @@ public class ContratController {
     @PutMapping("/ModifierContrat")
     Contrat updateContrat(@RequestBody Contrat c) {
         return contratService.updateContrat(c);
-
     }
 
     @Operation(description = "AfficherAllContrats")
@@ -73,8 +73,8 @@ public class ContratController {
     }
 
     @PutMapping("AsseignContartToEtudiant/{idContrat}/{idEtudiant}")
-    public void AsseignContartToEtudiant(@PathVariable int idContrat, @PathVariable int idEtudiant) {
-        contratService.AsseignContratToEtudiant(idContrat, idEtudiant);
+    public void asseignContartToEtudiant(@PathVariable int idContrat, @PathVariable int idEtudiant) {
+        contratService.asseignContratToEtudiant(idContrat, idEtudiant);
     }
 
     @GetMapping("getChiffreAffaireParEtudiant/{idEtudiant}")
@@ -120,5 +120,20 @@ public class ContratController {
     @GetMapping("findByNiveauEquipe/{niveau}")
     public List<Contrat> findByNiveauEquipe(@PathVariable Niveau niveau) {
         return contratService.findByNiveauEquipe(niveau);
+    }
+
+    @GetMapping("findByDepartement/{idDepartement}")
+    public List<Contrat> findByDepartement(@PathVariable int idDepartement) {
+        return contratService.findByDepartement(idDepartement);
+    }
+
+    @GetMapping("getChiffreAffaireParEquipe/{idEquipe}")
+    public float getChiffreAffaireParEquipe(@PathVariable int idEquipe) {
+        return contratService.getChiffreAffaireParEquipe(idEquipe);
+    }
+
+    @PutMapping("archiverContrat/{idContrat}")
+    public Contrat archiverContrat(@PathVariable int idContrat) {
+        return contratService.archiverContrat(idContrat);
     }
 }
