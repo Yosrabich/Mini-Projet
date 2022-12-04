@@ -9,8 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class DetailEquipeServiceImpl implements DetailEquipeService{
+public class DetailEquipeServiceImpl implements DetailEquipeService {
     DetailEquipeRepository detailEquipeRepository;
+
     @Override
     public List<DetailEquipe> retrieveAllDetails() {
         return detailEquipeRepository.findAll();
@@ -23,7 +24,7 @@ public class DetailEquipeServiceImpl implements DetailEquipeService{
 
     @Override
     public void deleteDetailEquipe(int id) {
-detailEquipeRepository.deleteById(id);
+        detailEquipeRepository.deleteById(id);
     }
 
     @Override
@@ -34,5 +35,10 @@ detailEquipeRepository.deleteById(id);
     @Override
     public DetailEquipe retrieveDetailEquipe(int id) {
         return detailEquipeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<DetailEquipe> afficherListeDetailEquipeTriee() {
+        return detailEquipeRepository.getAllOrderByIdDetailEquipe();
     }
 }

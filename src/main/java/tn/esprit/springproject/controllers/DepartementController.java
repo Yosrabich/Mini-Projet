@@ -3,12 +3,15 @@ package tn.esprit.springproject.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.springproject.entities.Departement;
 
+import tn.esprit.springproject.entities.MaxRecruDepart;
 import tn.esprit.springproject.services.DepartementService;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -67,5 +70,23 @@ public class DepartementController {
     @GetMapping("/getAllOrderByNomDepartAsc")
     List<Departement> getAllOrderByNomDepartAsc() {
         return departementService.getAllOrderByNomDepartAsc();
+    }
+
+    @Operation(description = "salaireMoyenParDepartement")
+    @GetMapping("/salaireMoyenParDepartement/{idDepart}")
+    double salaireMoyenParDepartement(@PathVariable int idDepart) {
+        return departementService.salaireMoyenParDepartement(idDepart);
+    }
+
+    @Operation(description = "getDepartementsByNomDepartContains")
+    @GetMapping("/getDepartementsByNomDepartContains/{nom}")
+    List<Departement> getDepartementsByNomDepartContains(@PathVariable String nom) {
+        return departementService.getDepartementsByNomDepartContains(nom);
+    }
+
+    @Operation(description = "maxDepartementRecrutement")
+    @GetMapping("/maxDepartementRecrutement/{startDate}/{endDate}")
+    List<MaxRecruDepart> nbRecrutementBydepartBetweenDeuxDates(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+        return departementService.nbRecrutementBydepartBetweenDeuxDates(startDate, endDate);
     }
 }
