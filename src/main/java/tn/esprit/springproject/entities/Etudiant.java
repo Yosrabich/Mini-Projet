@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,15 +23,15 @@ public class Etudiant {
     private int idEtudiant;
     @Enumerated(EnumType.STRING)
     private Option op;
-private String nom;
-private String prenom;
-@ManyToMany (mappedBy = "etudiants")
-@JsonIgnore
+    private String nom;
+    private String prenom;
+    @ManyToMany(mappedBy = "etudiants")
+    @JsonIgnore
     private Set<Equipe> equipes;
-@ManyToOne
-@JsonIgnore
+    @ManyToOne
+    @JsonIgnore
     private Departement departement;
-@OneToMany(mappedBy="etudiant")
-@JsonIgnore
+    @OneToMany(mappedBy = "etudiant")
+    @JsonIgnore
     private Set<Contrat> contrats;
 }

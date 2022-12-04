@@ -57,8 +57,8 @@ public class EnseignantController {
 
     @Operation(description = "getEnseignantByFonction_ChefDepartementAndDepartement_IdDepart")
     @PutMapping("/getChefDepart/{fonction}/{idDepart}")
-    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction,@PathVariable int idDepart) {
-        return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction,idDepart);
+    Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction, @PathVariable int idDepart) {
+        return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction, idDepart);
 
 
     }

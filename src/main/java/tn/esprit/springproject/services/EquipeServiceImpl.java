@@ -12,13 +12,15 @@ import tn.esprit.springproject.repositories.EtudiantRepository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+
 @Service
-public class EquipeServiceImpl implements EquipeService{
+public class EquipeServiceImpl implements EquipeService {
     @Autowired
 
     EquipeRepository equipeRepository;
     EtudiantRepository etudiantRepository;
-    boolean comparer ;
+    boolean comparer;
+
     @Override
     public List<Equipe> retrieveAllEquipe() {
         return equipeRepository.findAll();
@@ -47,30 +49,31 @@ public class EquipeServiceImpl implements EquipeService{
 
     @Override
     public int countEtudiantByEquipe(int id) {
-        Equipe equipe=equipeRepository.findEquipeByIdEquipe(id);
+        Equipe equipe = equipeRepository.findEquipeByIdEquipe(id);
         return equipe.getEtudiants().size();
     }
+
     @Override
     public Boolean compareEquipes(Integer id1, Integer id2) {
-        comparer=true;
-        Equipe eq1=equipeRepository.findById(id1).orElse(null);
-        Equipe eq2=equipeRepository.findById(id2).orElse(null);
-        if (eq1.getEtudiants().size()<eq2.getEtudiants().size()){
-            comparer=false;
+        comparer = true;
+        Equipe eq1 = equipeRepository.findById(id1).orElse(null);
+        Equipe eq2 = equipeRepository.findById(id2).orElse(null);
+        if (eq1.getEtudiants().size() < eq2.getEtudiants().size()) {
+            comparer = false;
         }
         return comparer;
     }
 
     @Override
     public void assignDetailsEquipeToEquipe(Integer idEquipe, DetailEquipe detailsEquipe) {
-        Equipe equipe= equipeRepository.findById(idEquipe).orElse(null);
+        Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
         equipe.setDetailEquipe(detailsEquipe);
         equipeRepository.save(equipe);
     }
 
     @Override
     public List<Equipe> retrieveEquipesDeLetudiant(Integer id) {
-        Etudiant etudiant= etudiantRepository.findById(id).orElse(null);
+        Etudiant etudiant = etudiantRepository.findById(id).orElse(null);
         return equipeRepository.findEquipesByIdEtudiant();
 
     }

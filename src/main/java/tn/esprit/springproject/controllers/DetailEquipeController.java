@@ -10,44 +10,52 @@ import tn.esprit.springproject.services.DetailEquipeService;
 import tn.esprit.springproject.services.DetailEquipeServiceImpl;
 
 import java.util.List;
+
 @Tag(name = "DetailEquipeController")
 @RestController
 @AllArgsConstructor
 @RequestMapping("DetailEquipe")
 public class DetailEquipeController {
     DetailEquipeService DetailEquipe;
-    @Operation(description ="AjouterDetailEquipe")
+
+    @Operation(description = "AjouterDetailEquipe")
     @PostMapping("/Ajouter")
-    DetailEquipe ajouterDetailEquipe (@RequestBody DetailEquipe detailEquipe){
+    DetailEquipe ajouterDetailEquipe(@RequestBody DetailEquipe detailEquipe) {
         return DetailEquipe.addDetailEquipe(detailEquipe);
     }
-    @Operation(description ="ModifierDetailEquipe")
+
+    @Operation(description = "ModifierDetailEquipe")
     @PutMapping("/Modifier")
-    DetailEquipe updateDetailEquipe(@RequestBody DetailEquipe detailEquipe){
+    DetailEquipe updateDetailEquipe(@RequestBody DetailEquipe detailEquipe) {
         return DetailEquipe.updateDetailEquipe(detailEquipe);
 
     }
-    @Operation(description ="AfficherAllDetailEquipe")
+
+    @Operation(description = "AfficherAllDetailEquipe")
     @GetMapping("/AfficherAll")
-    List<DetailEquipe> retrieveAllDetailEquipe(){
+    List<DetailEquipe> retrieveAllDetailEquipe() {
         return DetailEquipe.retrieveAllDetails();
     }
-    @Operation(description ="AfficherDetailEquipe")
+
+    @Operation(description = "AfficherDetailEquipe")
     @GetMapping("/Afficher/{id}")
-    DetailEquipe getDetailEquipeById(@PathVariable int id){
+    DetailEquipe getDetailEquipeById(@PathVariable int id) {
         return DetailEquipe.retrieveDetailEquipe(id);
     }
-    @Operation(description ="DeleteDetailEquipe")
+
+    @Operation(description = "DeleteDetailEquipe")
     @DeleteMapping("/Delete")
-    void deleteDetailEquipe(@PathVariable int id){
+    void deleteDetailEquipe(@PathVariable int id) {
         DetailEquipe.deleteDetailEquipe(id);
     }
+
     @GetMapping("/afficherdetailparequipe/{id}")
     public DetailEquipe retrieveDetailparEquipe(@PathVariable Integer id) {
         return DetailEquipe.retrieveDetailparEquipe(id);
     }
+
     @GetMapping("/afficherListeDetailEquipeTriee")
-    List<DetailEquipe> afficherListeDetailEquipeTriee(){
+    List<DetailEquipe> afficherListeDetailEquipeTriee() {
         return DetailEquipe.afficherListeDetailEquipeTriee();
     }
 }

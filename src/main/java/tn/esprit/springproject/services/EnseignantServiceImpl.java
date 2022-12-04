@@ -10,11 +10,13 @@ import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.EnseignantRepository;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class EnseignantServiceImpl implements EnseignantService{
+public class EnseignantServiceImpl implements EnseignantService {
     DepartementRepository departementRepository;
     EnseignantRepository enseignantRepository;
+
     @Override
     public List<Enseignant> retrieveAllEnseignants() {
         return enseignantRepository.findAll();
@@ -42,14 +44,14 @@ public class EnseignantServiceImpl implements EnseignantService{
     }
 
     public void assignEnseignantToDepartement(int enseignantId, int departementId) {
-       Enseignant enseignant=retrieveEnseignant(enseignantId);
-        Departement departement=departementRepository.findById(departementId).orElse(null);
+        Enseignant enseignant = retrieveEnseignant(enseignantId);
+        Departement departement = departementRepository.findById(departementId).orElse(null);
         enseignant.setDepartement(departement);
         enseignantRepository.save(enseignant);
     }
 
     @Override
-    public Enseignant getEnseignantByFonctionAndDepartement_IdDepart(Fonction fonction,int idDepart) {
+    public Enseignant getEnseignantByFonctionAndDepartement_IdDepart(Fonction fonction, int idDepart) {
         return enseignantRepository.getEnseignantByFonctionAndDepartement_IdDepart(fonction, idDepart);
     }
 }

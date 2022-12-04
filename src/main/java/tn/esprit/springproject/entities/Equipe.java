@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,10 +18,10 @@ public class Equipe {
     @Setter(AccessLevel.NONE)
     private int idEquipe;
     private String nomEquipe;
-@Enumerated(EnumType.STRING)
- private Niveau niveau;
-@OneToOne(cascade = CascadeType.ALL)
+    @Enumerated(EnumType.STRING)
+    private Niveau niveau;
+    @OneToOne(cascade = CascadeType.ALL)
     private DetailEquipe detailEquipe;
-@ManyToMany
+    @ManyToMany
     private Set<Etudiant> etudiants;
 }

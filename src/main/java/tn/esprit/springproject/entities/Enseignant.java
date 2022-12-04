@@ -23,9 +23,9 @@ public class Enseignant {
     @Enumerated(EnumType.STRING)
     private Fonction fonction;
     private double salaire;
-    @ManyToMany(mappedBy="enseignants")
+    @ManyToMany(mappedBy = "enseignants")
     @JsonIgnore
-     private Set<Module> modules;
+    private Set<Module> modules;
     @ManyToOne
     @JsonIgnore
     private Departement departement;

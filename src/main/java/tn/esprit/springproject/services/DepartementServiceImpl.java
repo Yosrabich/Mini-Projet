@@ -13,9 +13,10 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
-public class DepartementServiceImpl implements DepartementService{
+public class DepartementServiceImpl implements DepartementService {
     DepartementRepository departementRepository;
     UniversiteRepository universiteRepository;
+
     @Override
     public List<Departement> retrieveAllDepartements() {
         return departementRepository.findAll();
@@ -43,11 +44,10 @@ public class DepartementServiceImpl implements DepartementService{
     }
 
 
-
     @Override
     public Set<Departement> retrieveDepartementsByUniversite(int idUniversite) {
-        Universite universite=universiteRepository.findById(idUniversite).orElse(null);
-       return universite.getDepartements();
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        return universite.getDepartements();
 
 
     }

@@ -8,11 +8,13 @@ import tn.esprit.springproject.repositories.DepartementRepository;
 import tn.esprit.springproject.repositories.UniversiteRepository;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class UniversiteServiceImpl implements UniversiteService{
+public class UniversiteServiceImpl implements UniversiteService {
     UniversiteRepository universiteRepository;
     DepartementRepository departementRepository;
+
     @Override
     public List<Universite> retrieveAllUniversities() {
         return universiteRepository.findAll();
@@ -25,7 +27,7 @@ public class UniversiteServiceImpl implements UniversiteService{
 
     @Override
     public void deleteUniversite(int id) {
-universiteRepository.deleteById(id);
+        universiteRepository.deleteById(id);
     }
 
     @Override
@@ -37,9 +39,10 @@ universiteRepository.deleteById(id);
     public Universite retrieveUniversite(int id) {
         return universiteRepository.findById(id).orElse(null);
     }
-    public void assignUniversiteToDepartement(int idUniversite, int idDepartement){
-        Universite universite=universiteRepository.findById(idUniversite).orElse(null);
-        Departement departement=departementRepository.findById(idDepartement).orElse(null);
+
+    public void assignUniversiteToDepartement(int idUniversite, int idDepartement) {
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+        Departement departement = departementRepository.findById(idDepartement).orElse(null);
         universite.getDepartements().add(departement);
         universiteRepository.save(universite);
 

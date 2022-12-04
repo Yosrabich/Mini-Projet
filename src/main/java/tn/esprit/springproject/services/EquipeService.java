@@ -18,9 +18,12 @@ public interface EquipeService {
     Equipe updateEquipe(Equipe Eq);
 
     Equipe retrieveEquipe(Integer id);
+
     public int countEtudiantByEquipe(int id);
-    public Boolean compareEquipes(Integer id1,Integer id2);
-    public void assignDetailsEquipeToEquipe(Integer idEquipe, DetailEquipe detailsEquipe) ;
+
+    public Boolean compareEquipes(Integer id1, Integer id2);
+
+    public void assignDetailsEquipeToEquipe(Integer idEquipe, DetailEquipe detailsEquipe);
 
 
     public List<Equipe> retrieveEquipesDeLetudiant(Integer id);

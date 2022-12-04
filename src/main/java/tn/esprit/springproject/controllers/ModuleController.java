@@ -16,30 +16,35 @@ import java.util.List;
 @RequestMapping("Module")
 public class ModuleController {
     ModuleService moduleService;
-    @Operation(description ="AjouterEtudiant")
+
+    @Operation(description = "AjouterEtudiant")
     @PostMapping("/AjouterModule")
-    Module ajouterModule(@RequestBody Module mod){
+    Module ajouterModule(@RequestBody Module mod) {
         return moduleService.addModule(mod);
     }
-    @Operation(description ="ModifierModule")
+
+    @Operation(description = "ModifierModule")
     @PutMapping("/ModifierModule")
-    Module updateModule(@RequestBody Module mod){
+    Module updateModule(@RequestBody Module mod) {
         return moduleService.updateModule(mod);
 
     }
-    @Operation(description ="AfficherAllModules")
+
+    @Operation(description = "AfficherAllModules")
     @GetMapping("/AfficherAllModules")
-    List<Module> retrieveAllModules(){
+    List<Module> retrieveAllModules() {
         return moduleService.retrieveAllModules();
     }
-    @Operation(description ="AfficherModule")
+
+    @Operation(description = "AfficherModule")
     @GetMapping("/AfficherModuleById/{id}")
-    Module getModuleById(@PathVariable int id){
+    Module getModuleById(@PathVariable int id) {
         return moduleService.retrieveModule(id);
     }
-    @Operation(description ="DeleteModule")
+
+    @Operation(description = "DeleteModule")
     @DeleteMapping("/DeleteModule/{id}")
-    void deleteModule(@PathVariable int id){
+    void deleteModule(@PathVariable int id) {
         moduleService.deleteModule(id);
     }
 }
