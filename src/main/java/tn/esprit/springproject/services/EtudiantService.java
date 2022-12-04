@@ -28,13 +28,14 @@ public interface EtudiantService {
 
     Etudiant findByNomAndPrenom(String nom, String prenom);
 
-    List<Etudiant> getEtudiantsByDepartement(int idDepart);
-
-    Integer nombreEtudiantsByDepartement(int idDepart);
-
     Integer nombreEtudiantsByOption(Option option);
 
 
+    //**************** YOSRA**************************
+    List<Etudiant> getEtudiantsByDepartement(int idDepart);
+
+    Integer nombreEtudiantsByDepartement(int idDepart);
+    //***************************************************
 
     List<Etudiant> EtudiantsByOption(Option option);
 

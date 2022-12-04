@@ -10,11 +10,14 @@ import tn.esprit.springproject.entities.Option;
 import java.util.List;
 
 
-public interface EtudiantRepository extends JpaRepository<Etudiant,Integer> {
+public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
 
-    Etudiant findByNomAndPrenom(String nom,String prenom);
+    Etudiant findByNomAndPrenom(String nom, String prenom);
+
     @Query("select e from Etudiant e where e.departement.idDepart=?1")
+
     List<Etudiant>getEtudiantsByDepartement(int idDepart);
+
 
     @Query(value = "select count (e.idEtudiant) from Etudiant e group by e.departement.idDepart having e.departement.idDepart=?1")
     Integer nombreEtudiantsByDepartement(int idDepart);
@@ -26,7 +29,9 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,Integer> {
     List<Etudiant> EtudiantsByOption(@Param("option") Option option);
 
 
+
     @Query("select e from Etudiant e order by e.nom ASC ")
     List<Etudiant> getAllOrderByNomEtudiantAsc();
+
 
 }

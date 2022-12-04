@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -13,7 +15,7 @@ import java.util.Set;
 @ToString
 @Builder
 @Entity
-public class Enseignant {
+public class Enseignant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -23,9 +25,11 @@ public class Enseignant {
     @Enumerated(EnumType.STRING)
     private Fonction fonction;
     private double salaire;
-    @ManyToMany(mappedBy="enseignants")
+    @Temporal(TemporalType.DATE)
+    private Date dateRecrutement;
+    @ManyToMany(mappedBy = "enseignants")
     @JsonIgnore
-     private Set<Module> modules;
+    private Set<Module> modules;
     @ManyToOne
     @JsonIgnore
     private Departement departement;
