@@ -5,13 +5,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import tn.esprit.springproject.entities.Equipe;
 import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.Module;
 import tn.esprit.springproject.entities.Option;
 import tn.esprit.springproject.repositories.EtudiantRepository;
 
 import tn.esprit.springproject.services.EtudiantService;
 
 import java.util.List;
+import java.util.Set;
+
 @CrossOrigin(origins = "*")
 
 @Tag(name = "EtudiantController")
@@ -83,6 +87,29 @@ List<Etudiant>getEtudiantsByDepartement(@PathVariable int idDepart){
     @GetMapping("/EtudiantsByOption/{option}")
     List<Etudiant> EtudiantsByOption(@PathVariable Option option){
         return etudiantService.EtudiantsByOption(option);
+    }
+
+    @Operation(description = "getAllOrderByNomEtudiantAsc")
+    @GetMapping("/getAllOrderByNomEtudiantAsc")
+    List<Etudiant> getAllOrderByNomEtudiantAsc() {
+        return etudiantService.getAllOrderByNomEtudiantAsc();
+    }
+    @Operation(description ="assignModuletoEtudiant")
+    @PutMapping("/assignModuletoEtudiant/{etudiantId}/{moduleId}")
+    public void assignModuletoEtudiant(@PathVariable int etudiantId,@PathVariable int moduleId) {
+        etudiantService.assignModuleToEtudiant(etudiantId,moduleId);
+    }
+
+    @Operation(description =" EquipeByEtudiant")
+    @GetMapping("/EquipeByEtudiant/{etudiantID}")
+    Set<Equipe> EquipeByEtudiant(@PathVariable int etudiantID){
+        return etudiantService.EquipeByEtudiant(etudiantID);
+    }
+
+    @Operation(description =" ModulesByEtudiant")
+    @GetMapping("/ModulesByEtudiant/{etudiantID}")
+    Set<Module> ModulesByEtudiant(@PathVariable int etudiantID){
+        return etudiantService.ModulesByEtudiant(etudiantID);
     }
 
 

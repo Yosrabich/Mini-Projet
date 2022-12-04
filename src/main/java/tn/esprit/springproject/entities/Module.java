@@ -23,4 +23,8 @@ public class Module {
     @ManyToMany
     @JsonIgnore
     private Set<Enseignant> enseignants;
+
+    @ManyToMany(mappedBy = "modules")
+    @JsonIgnore
+    private Set<Etudiant> etudiants;
 }

@@ -29,4 +29,6 @@ public class Enseignant {
     @ManyToOne
     @JsonIgnore
     private Departement departement;
+
+
 }
