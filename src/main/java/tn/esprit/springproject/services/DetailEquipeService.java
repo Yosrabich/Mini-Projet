@@ -11,4 +11,6 @@ public interface DetailEquipeService {
     void deleteDetailEquipe(int id);
     DetailEquipe updateDetailEquipe(DetailEquipe d);
     DetailEquipe retrieveDetailEquipe(int id);
+    DetailEquipe retrieveDetailparEquipe(Integer id);
+    List<DetailEquipe> afficherListeDetailEquipeTriee();
 }

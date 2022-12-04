@@ -42,5 +42,13 @@ public class DetailEquipeController {
     void deleteDetailEquipe(@PathVariable int id){
         DetailEquipe.deleteDetailEquipe(id);
     }
+    @GetMapping("/afficherdetailparequipe/{id}")
+    public DetailEquipe retrieveDetailparEquipe(@PathVariable Integer id) {
+        return DetailEquipe.retrieveDetailparEquipe(id);
+    }
+    @GetMapping("/afficherListeDetailEquipeTriee")
+    List<DetailEquipe> afficherListeDetailEquipeTriee(){
+        return DetailEquipe.afficherListeDetailEquipeTriee();
+    }
 }
 
