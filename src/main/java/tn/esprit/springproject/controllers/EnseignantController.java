@@ -11,6 +11,8 @@ import tn.esprit.springproject.services.EnseignantService;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 @Tag(name = "EnseignantController")
 @RestController
 @AllArgsConstructor
@@ -44,8 +46,8 @@ public class EnseignantController {
     }
 
     @Operation(description = "DeleteEnseignant")
-    @DeleteMapping("/Delete")
-    void deleteDetailEquipe(@PathVariable int id) {
+    @DeleteMapping("/Delete/{id}")
+    void deleteEnseignant(@PathVariable int id) {
         enseignantService.deleteEnseignant(id);
     }
 
@@ -59,7 +61,29 @@ public class EnseignantController {
     @PutMapping("/getChefDepart/{fonction}/{idDepart}")
     Enseignant getEnseignantByFonctionAndDepartement_IdDepart(@PathVariable Fonction fonction,@PathVariable int idDepart) {
         return enseignantService.getEnseignantByFonctionAndDepartement_IdDepart(fonction,idDepart);
-
-
     }
+
+   /* @Operation(description = "getEnseignantByFonction_ChefDepartementAndModule_IdModule")
+    @PutMapping("/getChefDepart/{fonction}/{idModule}")
+    Enseignant getEneignantByFonctionAndModule_IdModule(Fonction fonction,int idModule){
+        return enseignantService.getEneignantByFonctionAndModule_IdModule(fonction, idModule);
+    }*/
+    @GetMapping("/chercherEnseignantBynom/{nomEns}")
+    public Enseignant chercherEnseignantBynom(@PathVariable String nomEns) {
+    	return enseignantService.chercherEnseignantBynom(nomEns);
+    }
+    @GetMapping("/cherchEnsByModule/{idModule}")
+    public List<Enseignant> getEnseignantByModules_idModule(@PathVariable int idModule){
+    	return enseignantService.getEnseignantByModules_idModule(idModule);
+    }
+    @GetMapping("/chercherEnsByModuleFonction/{fonction}/{idModule}")
+    public List<Enseignant> getEnseignantByFonctionAndModules_idModule(@PathVariable Fonction fonction,@PathVariable int idModule) {
+    	return enseignantService.getEnseignantByFonctionAndModules_idModule(fonction, idModule);
+    }
+    
+  @GetMapping("/chercherEnseignantBySalaire/{salaire}")
+		  public List<Enseignant> chercherEnseignantBySalaire(@PathVariable double salaire){
+	  return enseignantService.chercherEnseignantBySalaire(salaire);
+	  
+  }
 }

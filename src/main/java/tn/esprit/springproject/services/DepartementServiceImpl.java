@@ -1,6 +1,8 @@
 package tn.esprit.springproject.services;
 
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.springproject.entities.Departement;
 
@@ -14,7 +16,9 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class DepartementServiceImpl implements DepartementService{
+	@Autowired
     DepartementRepository departementRepository;
+	@Autowired
     UniversiteRepository universiteRepository;
     @Override
     public List<Departement> retrieveAllDepartements() {

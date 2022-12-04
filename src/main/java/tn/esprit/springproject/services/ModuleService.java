@@ -11,4 +11,7 @@ public interface ModuleService {
     void deleteModule(int id);
     Module updateModule(Module mod);
     Module retrieveModule(int id);
+    void assignEnseignantToModule(int enseignantId, int idModule);
+    List<Module> chercherModuleBycoeffModule(int idModule);
+    Module getModuleBynomModuleAndenseignant(int idEns , String nomModule); 
 }
