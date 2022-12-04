@@ -41,4 +41,6 @@ public interface UniversiteRepository extends JpaRepository<Universite, Integer>
 
     public List<Universite> findUniversiteByAdresse(String adresse);
 
+    public List<Universite> findUniversiteByAdresseContainingIgnoreCase(String x);
+
 }

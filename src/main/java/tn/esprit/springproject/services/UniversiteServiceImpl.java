@@ -67,6 +67,10 @@ public class UniversiteServiceImpl implements UniversiteService {
     public List<Universite> UnivparAdresse(String adresse) {
         return universiteRepository.findUniversiteByAdresse(adresse);
     }
+    @Override
+    public List<Universite> UnivparChaine(String adresse) {
+        return universiteRepository.findUniversiteByAdresseContainingIgnoreCase(adresse);
+    }
 }
 
 

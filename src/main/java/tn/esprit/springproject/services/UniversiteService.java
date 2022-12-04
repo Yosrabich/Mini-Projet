@@ -28,4 +28,6 @@ public interface UniversiteService {
 
     public List<Universite> UnivparAdresse(String adresse);
 
+    public List<Universite> UnivparChaine (String adresse);
+
 }

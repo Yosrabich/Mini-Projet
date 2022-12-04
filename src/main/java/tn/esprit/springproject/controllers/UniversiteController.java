@@ -81,4 +81,9 @@ public class UniversiteController {
     public List<Universite> NomUniv(@PathVariable("adresse") String adresse) {
         return universiteService.UnivparAdresse(adresse);
     }
+    @Operation(description = "Nom des Universites Par Chaines")
+    @GetMapping("NomUnivch/{adressee}")
+    public List<Universite> NomUnivChaine(@PathVariable("adressee") String adressee) {
+        return universiteService.UnivparChaine(adressee);
+    }
 }
