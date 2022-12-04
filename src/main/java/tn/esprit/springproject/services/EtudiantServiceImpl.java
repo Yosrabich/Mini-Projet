@@ -6,15 +6,22 @@ import tn.esprit.springproject.entities.*;
 import tn.esprit.springproject.repositories.DepartementRepository;
 
 import tn.esprit.springproject.repositories.EtudiantRepository;
+import tn.esprit.springproject.repositories.ModuleRepository;
 
 import java.util.List;
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class EtudiantServiceImpl implements EtudiantService{
     EtudiantRepository etudiantRepository;
     DepartementRepository departementRepository;
+    ModuleRepository moduleRepository;
     ContratService contratService;
     EquipeService equipeService;
+
+    ModuleService moduleService;
+
     @Override
     public List<Etudiant> retrieveAllEtudiants() {
         return etudiantRepository.findAll();
@@ -42,7 +49,7 @@ etudiantRepository.deleteById(id);
 
     @Override
     public void assignEtudiantToDepartement(int etudiantId, int departementId) {
-Etudiant etudiant=retrieveEtudiant(etudiantId);
+        Etudiant etudiant=retrieveEtudiant(etudiantId);
         Departement departement=departementRepository.findById(departementId).orElse(null);
         etudiant.setDepartement(departement);
         etudiantRepository.save(etudiant);
@@ -55,7 +62,6 @@ Etudiant etudiant=retrieveEtudiant(etudiantId);
         contrat.setEtudiant(e);
         equipe.getEtudiants().add(e);
         return etudiantRepository.save(e);
-
     }
 
 
@@ -84,7 +90,32 @@ Etudiant etudiant=retrieveEtudiant(etudiantId);
         return  etudiantRepository.EtudiantsByOption(option);
     }
 
+    @Override
+    public List<Etudiant> getAllOrderByNomEtudiantAsc() {
+        return etudiantRepository.getAllOrderByNomEtudiantAsc();
+    }
 
+    @Override
+    public void assignModuleToEtudiant(int etudiantId, int moduleId) {
+        Etudiant etudiant=retrieveEtudiant(etudiantId);
+        Module module= moduleRepository.findById(moduleId).orElse(null);
+        Set<Module> modules = etudiant.getModules();
+        modules.add(module);
+        etudiant.setModules(modules);
+        etudiantRepository.save(etudiant);
+    }
+
+    @Override
+    public Set<Equipe> EquipeByEtudiant(int etudiantID) {
+       Etudiant etudiant=retrieveEtudiant(etudiantID);
+       return etudiant.getEquipes();
+    }
+
+    @Override
+    public Set<Module> ModulesByEtudiant(int etudiantID) {
+        Etudiant etudiant=retrieveEtudiant(etudiantID);
+        return etudiant.getModules();
+    }
 }
 
 

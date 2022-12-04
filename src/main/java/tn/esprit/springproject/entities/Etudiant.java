@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,4 +34,8 @@ public class Etudiant {
     @OneToMany(mappedBy = "etudiant")
     @JsonIgnore
     private Set<Contrat> contrats;
+
+    @ManyToMany
+    @JsonIgnore
+    private Set<Module> modules;
 }

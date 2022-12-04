@@ -1,10 +1,13 @@
 package tn.esprit.springproject.services;
 
 
+import tn.esprit.springproject.entities.Equipe;
 import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.Module;
 import tn.esprit.springproject.entities.Option;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface EtudiantService {
@@ -35,4 +38,14 @@ public interface EtudiantService {
     //***************************************************
 
     List<Etudiant> EtudiantsByOption(Option option);
+
+    List<Etudiant> getAllOrderByNomEtudiantAsc();
+
+
+    void assignModuleToEtudiant(int etudiantId, int moduleId);
+
+
+    Set<Equipe> EquipeByEtudiant(int etudiantID);
+
+    Set<Module> ModulesByEtudiant(int etudiantID);
 }

@@ -33,4 +33,6 @@ public class Enseignant implements Serializable {
     @ManyToOne
     @JsonIgnore
     private Departement departement;
+
+
 }
