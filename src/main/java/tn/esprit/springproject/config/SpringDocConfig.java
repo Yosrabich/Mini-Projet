@@ -94,6 +94,14 @@ public class SpringDocConfig {
                 .pathsToExclude("**")
                 .build();
     }
+    @Bean
+    public GroupedOpenApi encadrantPublicApi() {
+        return GroupedOpenApi.builder()
+                .group("Encadrant Controllers")
+                .pathsToMatch("/Encadrant/**")
+                .pathsToExclude("**")
+                .build();
+    }
 
 }
 

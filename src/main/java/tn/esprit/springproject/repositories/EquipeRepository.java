@@ -12,4 +12,7 @@ public interface EquipeRepository extends JpaRepository<Equipe, Integer> {
 
     @Query("select et.equipes from Etudiant et ")
     List<Equipe> findEquipesByIdEtudiant();
+
+    //------------Fida ------------------
+    List<Equipe> findByEncadrant_IdEncadrant(int idEncadrant);
 }

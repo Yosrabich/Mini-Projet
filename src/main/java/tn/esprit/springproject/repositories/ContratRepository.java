@@ -37,5 +37,13 @@ public interface ContratRepository extends JpaRepository<Contrat, Integer> {
     List<Contrat> findByEtudiant_Op(Option option);
 
     List<Contrat> findByEtudiantNotNull();
+
+    List<Contrat> findByEtudiantNotNullAndAndDateFinContratBetween(Date startdate, Date enddate);
+
+    List<Contrat> findByDateFinContratBetweenOrDateDebutContratBetween(Date startdate, Date enddate, Date date1, Date date2);
+
+    List<Contrat> findByEtudiant_IdEtudiantAndDateFinContratBetweenOrDateDebutContratBetweenAndArchive(int idEtudaint, Date startdate, Date enddate, Date date1, Date date2, boolean archive);
+
+    List<Contrat> findByEtudiantNotNullAndArchive(boolean archive);
 }
 

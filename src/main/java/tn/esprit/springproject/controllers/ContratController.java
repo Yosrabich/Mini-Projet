@@ -136,4 +136,14 @@ public class ContratController {
     public Contrat archiverContrat(@PathVariable int idContrat) {
         return contratService.archiverContrat(idContrat);
     }
+
+    @GetMapping("getContratsEntreDeuxDate/{date1}/{date2}")
+    List<Contrat> getContratsEntreDeuxDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date1, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date2) {
+        return contratService.getContratsEntreDeuxDate(date1, date2);
+    }
+
+    @GetMapping("getChiffreAffaireParEtudiantEntreDeuxDate/{idEtudiant}/{startdate}/{enddate}")
+    public float getChiffreAffaireParEtudiantEntreDeuxDate(@PathVariable int idEtudiant, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startdate, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date enddate) {
+        return contratService.getChiffreAffaireParEtudiantEntreDeuxDate(idEtudiant, startdate, enddate);
+    }
 }

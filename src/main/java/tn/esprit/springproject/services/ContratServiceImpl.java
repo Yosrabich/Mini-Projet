@@ -73,13 +73,26 @@ public class ContratServiceImpl implements ContratService {
 
     @Override
     public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
-
-        float chiffre = 0;
-        List<Contrat> conts = contratRepository.findByDateFinContratBetweenAndArchive(startDate, endDate, false);
-        for (Contrat c : conts) {
-            chiffre += c.getMontantContrat();
+        float ca = 0;
+        long nbrMois;
+        LocalDate startFrom;
+        LocalDate endAt;
+        List<Contrat> contrats = contratRepository.findByDateFinContratBetweenOrDateDebutContratBetween(startDate, endDate, startDate, endDate);
+        for (Contrat c : contrats) {
+            if (startDate.compareTo(c.getDateDebutContrat()) >= 0) {
+                startFrom = convertToLocalDateViaInstant(startDate);
+            } else {
+                startFrom = convertToLocalDateViaInstant(c.getDateDebutContrat());
+            }
+            if (endDate.compareTo(c.getDateFinContrat()) >= 0) {
+                endAt = convertToLocalDateViaInstant(c.getDateFinContrat());
+            } else {
+                endAt = convertToLocalDateViaInstant(endDate);
+            }
+            nbrMois = ChronoUnit.MONTHS.between(startFrom, endAt);
+            ca += c.getMontantContrat() * nbrMois;
         }
-        return chiffre;
+        return ca;
     }
 
     @Override
@@ -171,7 +184,7 @@ public class ContratServiceImpl implements ContratService {
         float ca = 0;
         long nbrMois = 0;
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
-        List<Contrat> contrats = contratRepository.findByEtudiantNotNull();
+        List<Contrat> contrats = contratRepository.findByEtudiantNotNullAndArchive(false);
         List<Contrat> contratsParEquipe = contrats.stream().filter(contrat -> contrat.getEtudiant().getEquipes().contains(equipe)).collect(Collectors.toList());
         for (Contrat c : contratsParEquipe) {
             nbrMois = ChronoUnit.MONTHS.between(convertToLocalDateViaInstant(c.getDateDebutContrat()), convertToLocalDateViaInstant(c.getDateFinContrat()));
@@ -189,6 +202,35 @@ public class ContratServiceImpl implements ContratService {
 
     public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+    }
+
+    @Override
+    public List<Contrat> getContratsEntreDeuxDate(Date date1, Date date2) {
+        return contratRepository.findByDateFinContratBetweenOrDateDebutContratBetween(date1, date2, date1, date2);
+    }
+
+    @Override
+    public float getChiffreAffaireParEtudiantEntreDeuxDate(int idEtudiant, Date startdate, Date enddate) {
+        float ca = 0;
+        LocalDate startFrom;
+        LocalDate endAt;
+        long nbrMois;
+        List<Contrat> contrats = contratRepository.findByEtudiant_IdEtudiantAndDateFinContratBetweenOrDateDebutContratBetweenAndArchive(idEtudiant, startdate, enddate, startdate, enddate, false);
+        for (Contrat c : contrats) {
+            if (startdate.compareTo(c.getDateDebutContrat()) >= 0) {
+                startFrom = convertToLocalDateViaInstant(startdate);
+            } else {
+                startFrom = convertToLocalDateViaInstant(c.getDateDebutContrat());
+            }
+            if (enddate.compareTo(c.getDateFinContrat()) >= 0) {
+                endAt = convertToLocalDateViaInstant(c.getDateFinContrat());
+            } else {
+                endAt = convertToLocalDateViaInstant(enddate);
+            }
+            nbrMois = ChronoUnit.MONTHS.between(startFrom, endAt);
+            ca += c.getMontantContrat() * nbrMois;
+        }
+        return ca;
     }
 
 }

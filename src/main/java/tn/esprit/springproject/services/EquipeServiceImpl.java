@@ -55,13 +55,13 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Override
     public Boolean compareEquipes(Integer id1, Integer id2) {
-      Boolean  comparer = true;
+        Boolean comparer = true;
         Equipe eq1 = equipeRepository.findById(id1).orElse(null);
         Equipe eq2 = equipeRepository.findById(id2).orElse(null);
         if (eq1.getEtudiants().size() < eq2.getEtudiants().size()) {
             comparer = false;
         }
-        return comparer ;
+        return comparer;
     }
 
     @Override
@@ -78,6 +78,7 @@ public class EquipeServiceImpl implements EquipeService {
 
     }
 
+    //-------------------------- Fida----------------------------------
     @Override
     public Equipe affectEquipeToEncadrant(int idEquipe, int idEncadrant) {
         Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
@@ -85,4 +86,11 @@ public class EquipeServiceImpl implements EquipeService {
         equipe.setEncadrant(encadrant);
         return equipeRepository.save(equipe);
     }
+
+    @Override
+    public List<Equipe> getEquipesParEncadrant(int idEncadrant) {
+        return equipeRepository.findByEncadrant_IdEncadrant(idEncadrant);
+    }
+
+//----------------------------------------------------------------------------------
 }

@@ -27,4 +27,6 @@ public interface EquipeService {
     public List<Equipe> retrieveEquipesDeLetudiant(Integer id);
 
     Equipe affectEquipeToEncadrant(int idEquipe, int idEncadrant);
+
+    List<Equipe> getEquipesParEncadrant(int idEncadrant);
 }

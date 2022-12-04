@@ -49,4 +49,8 @@ public interface ContratService {
     float getChiffreAffaireParEquipe(int idEquipe);
 
     Contrat archiverContrat(int idContrat);
+
+    List<Contrat> getContratsEntreDeuxDate(Date date1, Date date2);
+
+    float getChiffreAffaireParEtudiantEntreDeuxDate(int idEtudiant, Date startdate, Date enddate);
 }

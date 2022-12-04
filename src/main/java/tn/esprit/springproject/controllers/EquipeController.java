@@ -55,8 +55,8 @@ public class EquipeController {
         return equipeService.countEtudiantByEquipe(id);
     }
 
-    @GetMapping("/compareEquipes/{id1id2}")
-    public Boolean compareEquipes(@PathVariable Integer id1, Integer id2) {
+    @GetMapping("/compareEquipes/{id1}/{id2}")
+    public Boolean compareEquipes(@PathVariable Integer id1, @PathVariable int id2) {
         return equipeService.compareEquipes(id1, id2);
     }
 
@@ -74,5 +74,10 @@ public class EquipeController {
     @PutMapping("affectEquipeToEncadrant/{idEquipe}/{idEncadrant}")
     public Equipe affectEquipeToEncadrant(@PathVariable int idEquipe, @PathVariable int idEncadrant) {
         return equipeService.affectEquipeToEncadrant(idEquipe, idEncadrant);
+    }
+
+    @GetMapping("getEquipesParEncadrant/{idEncadrant}")
+    public List<Equipe> getEquipesParEncadrant(@PathVariable int idEncadrant) {
+        return equipeService.getEquipesParEncadrant(idEncadrant);
     }
 }

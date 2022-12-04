@@ -20,6 +20,7 @@ public class Encadrant {
     private int idEncadrant;
     private String nomEncadrant;
     private String prenomEncadrant;
+    @Enumerated(EnumType.STRING)
     private Grade grade;
     @OneToMany(mappedBy = "encadrant")
     @JsonIgnore
