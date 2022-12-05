@@ -2,11 +2,9 @@ package tn.esprit.springproject.services;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import tn.esprit.springproject.entities.DetailEquipe;
-import tn.esprit.springproject.entities.Encadrant;
-import tn.esprit.springproject.entities.Equipe;
-import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.*;
 import tn.esprit.springproject.repositories.EncadrantRepository;
 import tn.esprit.springproject.repositories.EquipeRepository;
 import tn.esprit.springproject.repositories.EtudiantRepository;
@@ -93,4 +91,20 @@ public class EquipeServiceImpl implements EquipeService {
     }
 
 //----------------------------------------------------------------------------------
+@Override
+public List<Equipe> trierListeEquipes(){
+        String sortBy= "nomEquipe";
+        String sortDir= "asc";
+        Sort sortByName= sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?
+                Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
+        return equipeRepository.findAll(sortByName);
+    }
+
+    @Override
+    public Integer countEquipesParNiveau(Niveau niveau) {
+
+        return equipeRepository.findEquipesByNiveau(niveau).size();
+    }
+
 }
+

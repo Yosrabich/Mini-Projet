@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.springproject.entities.DetailEquipe;
 import tn.esprit.springproject.entities.Equipe;
 import tn.esprit.springproject.entities.Etudiant;
+import tn.esprit.springproject.entities.Niveau;
 import tn.esprit.springproject.services.EquipeService;
 import tn.esprit.springproject.services.EtudiantService;
 
@@ -79,5 +80,13 @@ public class EquipeController {
     @GetMapping("getEquipesParEncadrant/{idEncadrant}")
     public List<Equipe> getEquipesParEncadrant(@PathVariable int idEncadrant) {
         return equipeService.getEquipesParEncadrant(idEncadrant);
+    }
+    @GetMapping("trierListeEquipes")
+    public List<Equipe> trierListeEquipes(){
+        return equipeService.trierListeEquipes();
+    }
+    @GetMapping("countEquipesParNiveau")
+    public Integer countEquipesParNiveau(Niveau niveau) {
+        return equipeService.countEquipesParNiveau(niveau);
     }
 }

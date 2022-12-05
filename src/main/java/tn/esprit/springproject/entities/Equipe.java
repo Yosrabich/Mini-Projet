@@ -22,9 +22,12 @@ public class Equipe {
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
     @OneToOne(cascade = CascadeType.ALL)
-    private DetailEquipe detailEquipe;
-    @ManyToMany
-    private Set<Etudiant> etudiants;
+    @JsonIgnore
+    DetailEquipe detailEquipe;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Etudiant>etudiants;
     @ManyToOne
     @JsonIgnore
     private Encadrant encadrant;

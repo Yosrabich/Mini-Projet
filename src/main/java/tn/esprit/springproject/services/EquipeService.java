@@ -3,6 +3,7 @@ package tn.esprit.springproject.services;
 import tn.esprit.springproject.entities.Contrat;
 import tn.esprit.springproject.entities.DetailEquipe;
 import tn.esprit.springproject.entities.Equipe;
+import tn.esprit.springproject.entities.Niveau;
 
 import java.util.List;
 
@@ -29,4 +30,7 @@ public interface EquipeService {
     Equipe affectEquipeToEncadrant(int idEquipe, int idEncadrant);
 
     List<Equipe> getEquipesParEncadrant(int idEncadrant);
+    List<Equipe>  trierListeEquipes();
+    Integer countEquipesParNiveau(Niveau niveau);
+
 }
